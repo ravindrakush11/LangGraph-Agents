@@ -1,7 +1,7 @@
 from typing import Annotated, Sequence, TypedDict
 from dotenv import load_dotenv
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, ToolMessage, SystemMessage
-# from langchain_groq import ChatGroq
+from langchain_groq import ChatGroq
 from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
 from langgraph.graph.message import add_messages
@@ -45,8 +45,8 @@ def save(filename: str) -> str:
     
 tools = [update, save]
 
-# llm = ChatGroq(model = "llama3-8b-8192").bind_tools(tools)
-llm = ChatOllama(model="qwen3:8b").bind_tools(tools)
+llm = ChatGroq(model = "llama3-8b-8192").bind_tools(tools)
+# llm = ChatOllama(model="qwen3:8b").bind_tools(tools)
 
 def our_agent(state: AgentState) -> AgentState:
     system_prompt = SystemMessage(content=f"""
